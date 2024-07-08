@@ -48,3 +48,10 @@ jobs:
         run: |
           cat ${{ github.workspace }}/appsettings.json
         shell: bash
+      - name: hello
+        run: |
+          echo "$AWS_REGION"
+          echo ${AWS_REGION}
+          echo ${{ vars.AWS_REGION}}
+          echo ${{ env.AWS_REGION}}
+}
