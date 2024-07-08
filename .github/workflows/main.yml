@@ -1,7 +1,7 @@
 name: setup-environment example
 on:
   push:
-    branches: [ development, release-candidate ]
+    branches: [ development, release-candidate, main ]
 jobs:
   Example:
     name: Run example
@@ -12,8 +12,8 @@ jobs:
 
       - name: Load development vars
         id: set_env_development
-        if: |
-          github.ref == 'refs/heads/development'
+        # if: |
+        #   github.ref == 'refs/heads/development'
         uses: ./.github/actions/setup-environment
         with:
           environment-config-file: "setup_dev.env"
@@ -21,8 +21,8 @@ jobs:
 
       - name: Load release-candidate vars
         id: set_env_release-candidate
-        if: |
-          github.ref == 'refs/heads/release-candidate'
+        # if: |
+        #   github.ref == 'refs/heads/release-candidate'
         uses: thgbrb/setup-environment@main
         with:
           environment-config-file: "setup_qa.env"
@@ -42,7 +42,7 @@ jobs:
         with:
           files: '**/appsettings.json'
         env:
-          ConnectionStrings.Database: ${{ secrets.LOAD_CONNECTIONSTRING_FROM_GITHUB_SECRETS }}
+          ConnectionStrings.Database: 123
 
       - name: Dump appsettings.json
         run: |
